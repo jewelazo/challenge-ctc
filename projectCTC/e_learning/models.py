@@ -26,3 +26,9 @@ class Estudiante(models.Model):
     def __str__(self):
         return "{} {}".format(self.name,self.apellidos)
 
+class Curso(models.Model):
+    name=models.CharField(max_length=100)
+    precio=models.DecimalField(max_digits=5,decimal_places=2)
+    creado=models.DateTimeField(auto_now_add=True)
+    editado=models.DateTimeField(auto_now=True)
+
