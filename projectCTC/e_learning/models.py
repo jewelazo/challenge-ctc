@@ -31,4 +31,13 @@ class Curso(models.Model):
     precio=models.DecimalField(max_digits=5,decimal_places=2)
     creado=models.DateTimeField(auto_now_add=True)
     editado=models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return "{}".format(self.name)
+
+
+class Matricula(models.Model):
+    curso=models.ForeignKey(Curso)
+    estudiante=models.ForeignKey(Estudiante)
+    creado=models.DateTimeField(auto_now_add=True)
+    editado=models.DateTimeField(auto_now=True)
 
