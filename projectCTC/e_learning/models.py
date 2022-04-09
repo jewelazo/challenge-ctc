@@ -1,12 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
-
-SEX_OPTIONS = (
-        ('F', 'Femenino'),
-        ('M', 'Masculino'),
-        ('T', 'They')
-)
-
+from e_learning.helpers.generos import SEX_OPTIONS
 # Create your models here.
 class Padre(models.Model):
     nombre=models.CharField(max_length=30)
