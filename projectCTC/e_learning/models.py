@@ -9,7 +9,7 @@ SEX_OPTIONS = (
 
 # Create your models here.
 class Padre(models.Model):
-    name=models.CharField(max_length=30)
+    nombre=models.CharField(max_length=30)
     apellidos=models.CharField(max_length=100)
     nacionalidad=models.CharField(max_length=60,blank=True,null=True)
     genero=models.CharField(max_length=1, choices=SEX_OPTIONS)
@@ -20,10 +20,10 @@ class Padre(models.Model):
     editado=models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{} {}".format(self.name,self.apellidos)
+        return "{} {}".format(self.nombre,self.apellidos)
 
 class Estudiante(models.Model):
-    name=models.CharField(max_length=30)
+    nombre=models.CharField(max_length=30)
     apellidos=models.CharField(max_length=100)
     nacionalidad=models.CharField(max_length=60,blank=True,null=True)
     genero=models.CharField(max_length=1, choices=SEX_OPTIONS)
@@ -33,7 +33,7 @@ class Estudiante(models.Model):
     editado=models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{} {}".format(self.name,self.apellidos)
+        return "{} {}".format(self.nombre,self.apellidos)
 
 class Curso(models.Model):
     name=models.CharField(max_length=100,unique=True)
