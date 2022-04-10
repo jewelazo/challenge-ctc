@@ -3,108 +3,107 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.generics import GenericAPIView
 from rest_framework.views import APIView
-from e_learning.models import Padre,Estudiante
-from e_learning.api.serializers import PadreSerializer,EstudianteSerializer
+from e_learning.models import Padre, Estudiante
+from e_learning.api.serializers import PadreSerializer, EstudianteSerializer
 
 
 class PadreAPIView(GenericAPIView):
 
-    serializer_class=PadreSerializer
+    serializer_class = PadreSerializer
     queryset = ''
-    def get(self,request):
-        padres=Padre.objects.all()
-        padres_serializer=PadreSerializer(padres,many=True)
-        return Response(padres_serializer.data,status=status.HTTP_200_OK)
-    
-    def post(self,request):
-        padre_serializer=PadreSerializer(data=request.data)
+
+    def get(self, request):
+        padres = Padre.objects.all()
+        padres_serializer = PadreSerializer(padres, many=True)
+        return Response(padres_serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        padre_serializer = PadreSerializer(data=request.data)
         if padre_serializer.is_valid():
             padre_serializer.save()
-            return Response(padre_serializer.data,status=status.HTTP_201_CREATED)
-        return Response(padre_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+            return Response(padre_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(padre_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class PadreDetailAPIView(GenericAPIView):
 
-    serializer_class=PadreSerializer
+    serializer_class = PadreSerializer
 
-
-    def get(self,request,pk=None):
-        padre=Padre.objects.filter(pk=pk).first()
+    def get(self, request, pk=None):
+        padre = Padre.objects.filter(pk=pk).first()
         if padre:
-            padre_serializer=PadreSerializer(padre)
-            return Response(padre_serializer.data,status=status.HTTP_200_OK)
-        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
+            padre_serializer = PadreSerializer(padre)
+            return Response(padre_serializer.data, status=status.HTTP_200_OK)
+        return Response({"message": "No existe ese id"}, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self,request,pk=None):
-        padre=Padre.objects.filter(pk=pk).first()
+    def put(self, request, pk=None):
+        padre = Padre.objects.filter(pk=pk).first()
         if padre:
-            padre_serializer=PadreSerializer(padre,data=request.data)
+            padre_serializer = PadreSerializer(padre, data=request.data)
             if padre_serializer.is_valid():
                 padre_serializer.save()
-                return Response(padre_serializer.data,status=status.HTTP_200_OK)
-            return Response(padre_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
-    
-    def delete(self,request,pk=None):
-        padre=Padre.objects.filter(pk=pk).first()
+                return Response(padre_serializer.data, status=status.HTTP_200_OK)
+            return Response(padre_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": "No existe ese id"}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        padre = Padre.objects.filter(pk=pk).first()
         if padre:
             padre.delete()
-            return Response({"message":"eliminado exitosamente"},status=status.HTTP_200_OK)
-        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
+            return Response({"message": "eliminado exitosamente"}, status=status.HTTP_200_OK)
+        return Response({"message": "No existe ese id"}, status=status.HTTP_400_BAD_REQUEST)
 
-        
 
 class EstudianteAPIView(GenericAPIView):
 
-    serializer_class=EstudianteSerializer
+    serializer_class = EstudianteSerializer
     queryset = ''
-    def get(self,request):
-        estudiantes=Estudiante.objects.all()
-        estudiantes_serializer=EstudianteSerializer(estudiantes,many=True)
-        return Response(estudiantes_serializer.data,status=status.HTTP_200_OK)
-    
-    def post(self,request):
-        estudiante_serializer=EstudianteSerializer(data=request.data)
+
+    def get(self, request):
+        estudiantes = Estudiante.objects.all()
+        estudiantes_serializer = EstudianteSerializer(estudiantes, many=True)
+        return Response(estudiantes_serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        estudiante_serializer = EstudianteSerializer(data=request.data)
         if estudiante_serializer.is_valid():
             estudiante_serializer.save()
-            return Response(estudiante_serializer.data,status=status.HTTP_201_CREATED)
-        return Response(estudiante_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+            return Response(estudiante_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(estudiante_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class EstudianteDetailAPIView(GenericAPIView):
 
-    serializer_class=EstudianteSerializer
+    serializer_class = EstudianteSerializer
 
-
-    def get(self,request,pk=None):
-        estudiante=Estudiante.objects.filter(pk=pk).first()
+    def get(self, request, pk=None):
+        estudiante = Estudiante.objects.filter(pk=pk).first()
         if estudiante:
-            estudiante_serializer=EstudianteSerializer(estudiante)
-            return Response(estudiante_serializer.data,status=status.HTTP_200_OK)
-        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
+            estudiante_serializer = EstudianteSerializer(estudiante)
+            return Response(estudiante_serializer.data, status=status.HTTP_200_OK)
+        return Response({"message": "No existe ese id"}, status=status.HTTP_400_BAD_REQUEST)
 
-    def put(self,request,pk=None):
-        estudiante=Estudiante.objects.filter(pk=pk).first()
+    def put(self, request, pk=None):
+        estudiante = Estudiante.objects.filter(pk=pk).first()
         if estudiante:
-            estudiante_serializer=PadreSerializer(estudiante,data=request.data)
+            estudiante_serializer = PadreSerializer(estudiante, data=request.data)
             if estudiante_serializer.is_valid():
                 estudiante_serializer.save()
-                return Response(estudiante_serializer.data,status=status.HTTP_200_OK)
-            return Response(estudiante_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
-        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
-    
-    def delete(self,request,pk=None):
-        estudiante=Estudiante.objects.filter(pk=pk).first()
+                return Response(estudiante_serializer.data, status=status.HTTP_200_OK)
+            return Response(estudiante_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": "No existe ese id"}, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk=None):
+        estudiante = Estudiante.objects.filter(pk=pk).first()
         if estudiante:
             estudiante.delete()
-            return Response({"message":"eliminado exitosamente"},status=status.HTTP_200_OK)
-        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
-
-
+            return Response({"message": "eliminado exitosamente"}, status=status.HTTP_200_OK)
+        return Response({"message": "No existe ese id"}, status=status.HTTP_400_BAD_REQUEST)
 
 
 # @api_view(['GET','POST'])
 # def padre_api_view(request):
-    
+
 #     # list
 #     if request.method=="GET":
 #         padres=Padre.objects.all()
@@ -133,7 +132,7 @@ class EstudianteDetailAPIView(GenericAPIView):
 #         if request.method=="GET":
 #             padre_serializer=PadreSerializer(padre)
 #             return Response(padre_serializer.data,status=status.HTTP_200_OK)
-            
+
 #         # update
 #         elif request.method=="PUT":
 #             padre=Padre.objects.filter(id=pk).first()
