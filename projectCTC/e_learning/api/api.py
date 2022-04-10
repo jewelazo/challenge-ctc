@@ -1,8 +1,11 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from e_learning.models import Padre
-from e_learning.api.serializers import PadreSerializer
+from rest_framework.generics import GenericAPIView
+from rest_framework.views import APIView
+from e_learning.models import Padre,Estudiante
+from e_learning.api.serializers import PadreSerializer,EstudianteSerializer
+
 
 @api_view(['GET','POST'])
 def padre_api_view(request):
@@ -55,3 +58,50 @@ def padre_detail_api_view(request,pk=None):
     return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
 
         
+
+class EstudianteAPIView(GenericAPIView):
+
+    serializer_class=EstudianteSerializer
+
+    def get(self,request):
+        estudiantes=Estudiante.objects.all()
+        estudiantes_serializer=EstudianteSerializer(estudiantes,many=True)
+        return Response(estudiantes_serializer.data,status=status.HTTP_200_OK)
+    
+    def post(self,request):
+        estudiante_serializer=EstudianteSerializer(data=request.data)
+        if estudiante_serializer.is_valid():
+            estudiante_serializer.save()
+            return Response(estudiante_serializer.data,status=status.HTTP_201_CREATED)
+        return Response(estudiante_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+
+class EstudianteDetailAPIView(GenericAPIView):
+
+    serializer_class=EstudianteSerializer
+
+
+    def get(self,request,pk=None):
+        estudiante=Estudiante.objects.filter(pk=pk).first()
+        if estudiante:
+            estudiante_serializer=EstudianteSerializer(estudiante)
+            return Response(estudiante_serializer.data,status=status.HTTP_200_OK)
+        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
+
+    def put(self,request,pk=None):
+        estudiante=Estudiante.objects.filter(pk=pk).first()
+        if estudiante:
+            estudiante_serializer=PadreSerializer(estudiante,data=request.data)
+            if estudiante_serializer.is_valid():
+                estudiante_serializer.save()
+                return Response(estudiante_serializer.data,status=status.HTTP_200_OK)
+            return Response(estudiante_serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
+    
+    def delete(self,request,pk=None):
+        estudiante=Estudiante.objects.filter(pk=pk).first()
+        if estudiante:
+            estudiante.delete()
+            return Response({"message":"eliminado exitosamente"},status=status.HTTP_200_OK)
+        return Response({"message":"No existe ese id"},status=status.HTTP_400_BAD_REQUEST)
+
+
