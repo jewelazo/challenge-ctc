@@ -1,6 +1,6 @@
 from django.urls import reverse,resolve
 from django.test import SimpleTestCase
-from e_learning.api.api import padre_api_view
+from e_learning.api.api import PadreAPIView
 from rest_framework.test import APITestCase
 from rest_framework import status
 # Create your tests here.
@@ -9,7 +9,7 @@ class ApiUrlsTest(SimpleTestCase):
 
     def test_get_padres_is_resolved(self):
         url=reverse("padres_api")
-        self.assertEqual(resolve(url).func,padre_api_view)
+        self.assertEqual(resolve(url).func.view_class,PadreAPIView)
 
 
 class ApiPadresTest(APITestCase):
