@@ -28,6 +28,7 @@ class PadreAPIView(GenericAPIView):
 class PadreDetailAPIView(GenericAPIView):
 
     serializer_class = PadreSerializer
+    queryset = ''
 
     def get(self, request, pk=None):
         padre = Padre.objects.filter(pk=pk).first()
@@ -75,6 +76,7 @@ class EstudianteAPIView(GenericAPIView):
 class EstudianteDetailAPIView(GenericAPIView):
 
     serializer_class = EstudianteSerializer
+    queryset = ''
 
     def get(self, request, pk=None):
         estudiante = Estudiante.objects.filter(pk=pk).first()
