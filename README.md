@@ -12,13 +12,13 @@ ApiRest built with Django Rest Framework 3.13.1
 ```
             virtualenv -p python3 env
 ```
-3)Active virtual environment
+3) Active virtual environment
 
 4) Install libraries:
 ```
             (env) pip install -r requirements.txt
 ```
-5)Run command:
+5) Run command:
 ```
             (env) python manage.py runserver
 ```
