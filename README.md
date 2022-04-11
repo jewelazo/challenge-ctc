@@ -27,7 +27,7 @@ ApiRest built with Django Rest Framework 3.13.1
 ```
             (env) pip install -r requirements.txt
 ```
-5) Go to ProjectCTC folder and run this command:
+5) Go to projectCTC folder and run this command:
 ```
             (env) python manage.py runserver
 ```
