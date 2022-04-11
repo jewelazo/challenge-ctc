@@ -1,6 +1,10 @@
 # Challenge-ctc
 
 ApiRest built with Django Rest Framework 3.13.1
+# ERD
+<p align="center">
+           <img src="https://lucid.app/publicSegments/view/58f6fcab-af8c-4339-b851-b12c2f39b954/image.png"/>
+</p>
 
 # Getting Started
 
