@@ -14,20 +14,20 @@ ApiRest built with Django Rest Framework 3.13.1
 ```
            git clone https://github.com/jewelazo/challenge-ctc
 ```
-2) Create a virtual environmnent:
+5) Create a virtual environmnent:
 ```
             virtualenv -p python3 env
 ```
-3) Activate the virtual environment:
+6) Activate the virtual environment:
 ```
             .\env\Scripts\activate
 ```
 
-4) Install libraries:
+7) Install libraries:
 ```
             (env) pip install -r requirements.txt
 ```
-5) Go to projectCTC folder and run this command:
+8) Go to projectCTC folder and run this command:
 ```
             (env) python manage.py runserver
 ```
